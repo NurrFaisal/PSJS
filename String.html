@@ -1,0 +1,17 @@
+<script>
+  var s = "hello";
+  function reverseString(str) {
+    var left = 0;
+    var right = str.length - 1;
+    while (left < right) {
+      var temp = str[left];
+      str[left] = str[right];
+      str[right] = temp;
+      left++;
+      right--;
+    }
+    return str;
+  }
+
+  console.log(reverseString(s));
+</script>

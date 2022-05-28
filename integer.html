@@ -1,0 +1,32 @@
+<script>
+  function factorial(num) {
+    var fact = 1;
+    if (num == 0 || num == 1) {
+      return num;
+    } else {
+      fact = num * factorial(num - 1);
+      return fact;
+    }
+  }
+
+  function triliing_zeros(num) {
+    var oc = 5;
+    var count = 0;
+    while (num / oc >= 1) {
+      count += Math.floor(num / Math.floor(oc));
+      oc = oc * 5;
+    }
+    return count;
+  }
+
+  function twoNum(nums, target) {
+    for (var i = 0; i < nums.length; i++) {
+      for (var j = i + 1; j < nums.length; j++) {
+        if (nums[i] + nums[j] == target) {
+          return [i, j];
+        }
+      }
+    }
+  }
+  var nums = [2, 7, 11, 15];
+</script>

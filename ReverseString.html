@@ -1,0 +1,25 @@
+<script>
+  function reverseString(s) {
+    var result = "";
+    var s_arr = s.split(" ");
+    var left = 0;
+    var right = s_arr.length - 1;
+    for (var i = 0; i < s_arr.length; i++) {
+      if (left < right) {
+        var temp = s_arr[right];
+        s_arr[right] = s_arr[left];
+        s_arr[left] = temp;
+        left++;
+        right--;
+      }
+    }
+
+    for (var j = 0; j < s_arr.length; j++) {
+      result += s_arr[j] + " ";
+    }
+
+    return result.trim();
+  }
+  var s = "the sky is blue";
+  console.log(reverseString(s));
+</script>
