@@ -1,0 +1,39 @@
+<script>
+
+
+
+
+
+// need to study....
+
+function longestPalindrome(s) {
+    var longest = '';
+    for(i = 0; i < s.length; i++){
+        if ((s.length-i)*2 <= longest.length) break; 
+    longest = scanOutward(s, longest, i, i);   // odd length "ata"
+    longest = scanOutward(s, longest, i+1, i); // even length "atta"
+  }
+  return longest;   
+}
+
+
+function scanOutward(s, longest, left, right) {
+  if (left > 0 && right < s.length && s[left-1] === s[right+1]) {
+    return scanOutward(s, longest, left-1, right+1);
+  } else {
+    return (right-left+1 >= longest.length) ? s.substring(left, right+1) : longest;
+  }
+
+var s = 'babad';
+console.log(longestPalindrome(s))
+
+
+
+
+
+
+
+
+
+
+</script>
