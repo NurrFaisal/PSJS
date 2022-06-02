@@ -1,0 +1,83 @@
+<script>
+  // need to study....
+
+  function longestPalindrome(s) {
+    var longest = "";
+    for (i = 0; i < s.length; i++) {
+      if ((s.length - i) * 2 <= longest.length) break;
+      longest = scanOutward(s, longest, i, i); // odd length "ata"
+      longest = scanOutward(s, longest, i + 1, i); // even length "atta"
+    }
+    return longest;
+  }
+
+  function scanOutward(s, longest, left, right) {
+    if (left > 0 && right < s.length && s[left - 1] === s[right + 1]) {
+      return scanOutward(s, longest, left - 1, right + 1);
+    } else {
+      return right - left + 1 >= longest.length
+        ? s.substring(left, right + 1)
+        : longest;
+    }
+  }
+  var s = "babad";
+  // console.log(longestPalindrome(s));
+
+  left = 0;
+  i = 3;
+  var s = "abcabcbb";
+  arr = ["a", "b", "c"];
+  var longLen = 3;
+
+  function palimdromicSubstring(s) {
+    var left = 0;
+    var right = 0;
+    var lgtStr = [];
+    var longLen = 0;
+    for (i = 0; i < s.length; i++) {
+      if (!lgtStr.includes(s[i])) {
+        lgtStr.push(s[i]);
+      } else {
+        if (lgtStr.length > longLen) {
+          longLen = lgtStr.length;
+        }
+        while (left <= i) {
+          if (lgtStr[left] != s[i]) {
+            lgtStr.pop();
+          }
+          left++;
+        }
+        lgtStr.push(s[i]);
+      }
+    }
+    return lgtStr.length;
+  }
+
+  // console.log(palimdromicSubstring(s));
+
+  function longestSubString(s) {
+    let max = 0;
+    let windowStart = 0;
+    const soFar = {};
+    for (let windowEnd = 0; windowEnd < s.length; windowEnd++) {
+      let rightChar = s[windowEnd];
+      soFar[rightChar] = soFar[rightChar] + 1 || 1;
+
+      while (soFar[rightChar] > 1) {
+        let leftChar = s[windowStart];
+
+        if (soFar[leftChar] > 1) {
+          soFar[leftChar]--;
+        } else {
+          delete soFar[leftChar];
+        }
+        windowStart++;
+      }
+      max = Math.max(max, windowEnd - windowStart + 1);
+    }
+    return max;
+  }
+
+  var s = "abcabcbb";
+  console.log(longestSubString(s));
+</script>
