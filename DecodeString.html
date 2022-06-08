@@ -1,0 +1,35 @@
+<script>
+    function decode(str){
+        //3[a]2[bc]
+        let numberStack = []; // [3, 2]
+        let stringStack = []; // [a, [, c]]
+        let temp ="";
+        let popStr ="";
+        let result = "";
+        //3[a2[c]]
+        for(let i = 0; i < str.length; i++){
+            if(!isNaN(str[i])){
+                numberStack.push(str[i])
+            }else if(str[i] == ']'){
+               while(stringStack.length != 0){
+                var value = stringStack.pop()
+                   if(value == '[') break;      
+                       temp = value+temp
+               }
+               var popNumber = numberStack.pop();
+               for(j = 0; j < popNumber; j++){
+                   result +=temp
+               }
+               temp = ""
+
+            }else{
+                stringStack.push(str[i])
+            }
+        }
+        // console.log(stringStack)
+        return result;
+    }
+    var str = "3[a]2[bc]"
+    var str = "3[a2[c]]"
+    console.log(decode(str))
+</script>
